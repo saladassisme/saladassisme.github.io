@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-11T08:58:20.942Z</updated>
+  <updated>2022-03-11T14:59:28.033Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何用Hexo搭建Github个人博客</title>
+    <link href="http://example.com/2022/03/11/%E5%A6%82%E4%BD%95%E7%94%A8Hexo+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://example.com/2022/03/11/%E5%A6%82%E4%BD%95%E7%94%A8Hexo+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <published>2022-03-11T12:43:29.594Z</published>
+    <updated>2022-03-11T14:59:28.033Z</updated>
+    
+    <content type="html"><![CDATA[<p>[记录一下这个博客的诞生故事]</p><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><ol><li>拥有一个Github账号。</li><li>本机装有node.js,Git,hexo。</li></ol><h4 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h4><ol><li>在Github中新建一个以&lt;&lt;你的名字&gt;.github.io&gt;命名的repo。<ul><li>点进这个repo的settings,拉到最下面的github pages,select任意一个themes,点进你的github.io网站预览。</li></ul></li><li>本地新建一个文件夹,右键Git Bash输入<code>git init</code>,以初始化这个文件夹。</li><li>配置SSH公钥：<ul><li>在文件夹内右键<code>ssh-keygen -t rsa -C &quot;&lt;你的github注册名&gt;&quot;</code></li><li>在本机找到id_rsa.pub文件,把里面的内容复制。</li><li>在Github点进头像settings进入SSH and GPG keys配置页面,add ssh key,把刚刚复制的公钥黏贴到内容栏,名字任意取,在本地git bash输入<code>ssh -T git@github.com</code>,如果没报错就是成功了。</li></ul></li><li>在本地文件夹shift右键打开powershell,进行git config配置<pre class="line-numbers language-cmd"><code class="language-cmd">  git config --global user.name "<你的github用户名>"  git config --global user.email "<你的github注册邮箱>"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li>在本地文件夹右键git bash,输入<code>hexo init</code>以及<code>npm install</code>。</li><li>到这里,你已经拥有了一个没有和github打通的静态博客了。你可以通过<code>hexo g -s</code>在本地的<code>localhost:4000</code>预览它。</li><li>要想在github.io网站得到你的博客,首先需要打开_congif.yml,修改信息,使其可以连接到Github。<ul><li>拖到最后,把deploy下的type改为git,添加repo和branch,最后修改结束的deploy长这样：<pre class="line-numbers language-javascript"><code class="language-javascript">deploy<span class="token punctuation">:</span>  type<span class="token punctuation">:</span> git  repo<span class="token punctuation">:</span> <span class="token operator">&lt;</span>GitHub中repo的ssh地址<span class="token operator">></span>  branch<span class="token punctuation">:</span> gh<span class="token operator">-</span>pages<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li></ul></li><li>运行<code>hexo g -d</code>来尝试部署到github上,这时打开github.io网站可能看到的还是第1步中的页面,而非之前运行<code>hexo s</code>时预览的画面,没有关系。<ul><li>点开GitHub repo的settings,拉到最下面的github pages,进入,把默认的main分支改成gh-pages（也就是第7步中你定义的分支）,然后再执行<code>hexo clean, hexo g -d</code>,即可在github.io浏览到和预览一样的网页内容。</li></ul></li></ol><h4 id="注意事项和坑"><a href="#注意事项和坑" class="headerlink" title="注意事项和坑"></a>注意事项和坑</h4><p>我在搭hexo的时候遇到的问题包括：</p><ol><li>本地无法部署到github,导致<code>hexo d</code>和<code>hexo s</code>不一样,而<code>hexo d</code>的内容与最早时候github pages一样。<br>这个错误在于在修改_config.yml的时候把branch设置成了网上大多教程里的master而非gh-pages,在修改了这一步之后同样别忘记把github-repo-setttings-github pages的main改成gh-pages,做完这两步再<code>hexo g -d</code>就可以解决这个问题。</li><li>换themes的时候<code>git clone</code>的地址是在themes下,而非根目录下,会导致错误。</li><li><code>hexo g -d</code>如果有问题可以试一下先<code>hexo clean</code>再<code>hexo g -d</code>,因为可能之前编译的public和新的修改有冲突,导致错误。</li></ol><h4 id="后续可以玩的事"><a href="#后续可以玩的事" class="headerlink" title="后续可以玩的事"></a>后续可以玩的事</h4><ol><li>theme定制<ul><li>几个我觉得不错的theme:makito,maupassant。</li></ul></li><li>layout的修改</li><li>增加评论服务如disqus等</li></ol><h4 id="有用的文档"><a href="#有用的文档" class="headerlink" title="有用的文档"></a>有用的文档</h4><p> <a href="https://hexo.io/zh-cn/docs/index.html">Hexo官方中文文档</a><br> <a href="https://hexo.io/zh-cn/docs/github-pages.html">将Hexo部署到GitHub Pages</a><br> <a href="https://zhuanlan.zhihu.com/p/26625249">民间教程1</a><br> <a href="https://zhuanlan.zhihu.com/p/35668237">民间教程2</a><br> <a href="https://z.arlmy.me/posts/hexo/Hexo_BlogSetup/">民间教程3</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;[记录一下这个博客的诞生故事]&lt;/p&gt;
+&lt;h4 id=&quot;前提条件&quot;&gt;&lt;a href=&quot;#前提条件&quot; class=&quot;headerlink&quot; title=&quot;前提条件&quot;&gt;&lt;/a&gt;前提条件&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;拥有一个Github账号。&lt;/li&gt;
+&lt;li&gt;本机装有node.j</summary>
+      
+    
+    
+    
+    <category term="博客" scheme="http://example.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>我想我是疯了吧</title>
@@ -35,6 +62,34 @@
       
     
     
+    
+    <category term="未分类" scheme="http://example.com/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>3月第2周 3.7-3.13</title>
+    <link href="http://example.com/2022/03/11/3%E6%9C%88%E7%AC%AC2%E5%91%A8-3-7-3-13/"/>
+    <id>http://example.com/2022/03/11/3%E6%9C%88%E7%AC%AC2%E5%91%A8-3-7-3-13/</id>
+    <published>2022-03-11T08:03:01.606Z</published>
+    <updated>2022-03-11T14:58:06.969Z</updated>
+    
+    <content type="html"><![CDATA[<p>3.7</p><p>和刘总聊了职业发展&#x2F;规划的问题，还是很受用的。明白了年龄对管理层的重要性。技术条线的困难性。</p><p>周三下午面试别忘了哦。仅作锻炼啦。周二可以好好学一天算法，过经历。</p><p>女生节包了鲜花。满天星、小雏菊和康乃馨。</p><p>英同八卦笑死人了。</p><p>3.8</p><p>上午领导还在，就摸了🐟。下午跑去股份5楼看面试了。</p><p>3.9</p><p>看面试题。下午面试。我靠，笔试我还作弊了，感觉问题答得也不怎么样，觉得自己可能不适合做算法，因为兴趣不是那么那么足，但是这两天密集地吸收了知识还是感觉很充实的。</p><p>面完之后就一直在和P聊天，他好像在自己整外包，突然感受到了之前他一直说的“隐忍”作为一种好的品质的point。虽然这个人还是很浮躁，但是所谓隐忍的这一点还是我需要学习的。千真万确。</p><p>3.10</p><p>今天又回归了正常的生活。我需要把本周的工作完成，并且思考刘总的话的意味，重新开始出发。</p><p>早上偶然发现一个人特别好的女同事结婚了，啊，她人实在是太nice了，一定会很幸福的，祝福。</p><p>3.11</p><p>wow今天没有去上班。上海的疫情又变得严重了。我在家搞了一天hexo，发现了makito这个可爱的博主。</p><p>终于搭好了我的hexo小站，嘿嘿。特别有成就感！还发现了一个CMU的本科生，学计算机与艺术专业的，好可爱！果然我还是太无趣的一个人了。</p><p>晚上打算把电脑里的文件全部整理一下，然后做一些归类整顿，塞到blog里面。</p><p>吃完晚饭去小区做核酸了，唉。毁灭吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;3.7&lt;/p&gt;
+&lt;p&gt;和刘总聊了职业发展&amp;#x2F;规划的问题，还是很受用的。明白了年龄对管理层的重要性。技术条线的困难性。&lt;/p&gt;
+&lt;p&gt;周三下午面试别忘了哦。仅作锻炼啦。周二可以好好学一天算法，过经历。&lt;/p&gt;
+&lt;p&gt;女生节包了鲜花。满天星、小雏菊和康乃馨。&lt;/p&gt;
+&lt;</summary>
+      
+    
+    
+    
+    <category term="周记" scheme="http://example.com/categories/%E5%91%A8%E8%AE%B0/"/>
     
     <category term="未分类" scheme="http://example.com/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
     
@@ -463,56 +518,6 @@
     
     
     <category term="与他人" scheme="http://example.com/tags/%E4%B8%8E%E4%BB%96%E4%BA%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>离心记#1  小星</title>
-    <link href="http://example.com/2020/12/07/%E7%A6%BB%E5%BF%83%E8%AE%B01-%E5%B0%8F%E6%98%9F/"/>
-    <id>http://example.com/2020/12/07/%E7%A6%BB%E5%BF%83%E8%AE%B01-%E5%B0%8F%E6%98%9F/</id>
-    <published>2020-12-07T02:45:27.000Z</published>
-    <updated>2022-03-11T08:03:01.552Z</updated>
-    
-    <content type="html"><![CDATA[<p> <strong>Intro&gt;Centrifugal</strong> </p><p>这个栏目是一周前开始搞的，最近听了蛮多播客，所以自己也心痒痒。之所以叫<strong>离心记</strong>，是觉得离心这个概念能很好表述我现在的状态——永远像个仓鼠一样在滚轮上奔跑，离心力把我黏在一条固定轨道，想挣脱好难。无聊对我来说太致命了。<strong>我就是一个好事****者。</strong>所以我想找一些人聊天，聊聊每个独特生命的故事。</p><p> <strong>#1</strong> </p><p>嘉宾：陈小星</p><p>我们聊了：</p><p>🔸 我们的高中和大学</p><p>🔸 摄影和公众号</p><p>🔸 关于修图和美</p><p>🔸“我好像朋友真的蛮多的”</p><p>🔸 选专业、兴趣点和创造</p><p>🔸 活成一个模板</p><p>🔸 向内探索和向外征服</p><p>🔸 左脑右脑神经科学小知识</p><p>BGM</p><p>Tripoli-Pinback</p><p>ありあまる富-椎名林檎</p><p>⚠️本期播客录的是语音通话，音质较差，加之我们语言组织能力比较差，收听体验糟糕，以至于我纠结了好久要不要放出来。最后还是觉得第一期特别有纪念意义所以还是放出来了，大家随便听听就好。</p><p><a href="https://m.ximalaya.com/jiaoyupeixun/29956247/218448846">https://m.ximalaya.com/jiaoyupeixun/29956247/218448846</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt; &lt;strong&gt;Intro&amp;gt;Centrifugal&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;这个栏目是一周前开始搞的，最近听了蛮多播客，所以自己也心痒痒。之所以叫&lt;strong&gt;离心记&lt;/strong&gt;，是觉得离心这个概念能很好表述我现在的状态——永远像个仓鼠一样在滚轮上</summary>
-      
-    
-    
-    
-    <category term="播客" scheme="http://example.com/categories/%E6%92%AD%E5%AE%A2/"/>
-    
-    
-    <category term="与他人" scheme="http://example.com/tags/%E4%B8%8E%E4%BB%96%E4%BA%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的家族简史</title>
-    <link href="http://example.com/2020/12/07/%E6%88%91%E7%9A%84%E5%AE%B6%E6%97%8F%E7%AE%80%E5%8F%B2/"/>
-    <id>http://example.com/2020/12/07/%E6%88%91%E7%9A%84%E5%AE%B6%E6%97%8F%E7%AE%80%E5%8F%B2/</id>
-    <published>2020-12-07T02:44:02.000Z</published>
-    <updated>2022-03-11T08:03:01.550Z</updated>
-    
-    <content type="html"><![CDATA[<p>  当我们置身于家庭与血缘的语境之中，我们应当如何生命？</p><p>       家族首先发轫于联系。在华夏文明的浪漫视野中，生命的诞生与逝去是奇妙而无法捉摸的，且无规律可以追寻的纯自然现象。对于生命的变故，我们滋生出强烈的情感，震撼或者悲恸。这种独特的情感体验使我们敬服于自然。因而在最初的对事理的规制中，也许是出于对自然的崇拜，我们将家族视为一种终极的联系，并将之划为伦理的底线。</p><p>       十个月的漫长等待之后，脐带被剪断，萎缩，并幻化成为一种无形的纽带，在两个生命的最深处打了一个死结。我诞生了，诞生在家族的浩瀚长河中，也诞生在一套美丽的秩序与逻辑里，更诞生在一场无法击穿的宿命脚下。</p><p>       父亲的父亲因胃癌早早去世。于是在十六岁的年纪，我的奶奶就担起了一个家的重量，照顾两个年幼的孩子，独自工作挣钱，以及农作收割……这个披星戴月的努力家，以其拼命三郎的干劲，维持着一家三口的日常生活。然而这段举步维艰的岁月，却也沉淀着一些苦味。女强人本色难免滋生出愈演愈烈的控制欲。对于教育，尤其是对于正值启蒙阶段的我的父亲和我的姑姑的教育，这股控制欲显得过于强势，以至与教育娓娓道来循循善诱的温婉之风截然相反，将两个孩子性格中的美丽的棱角统统磨平。我的父亲变成了他的父亲——敏感多思，倔强自我；而我的姑姑变成了她的母亲——通达交际，强硬实干。</p><p>       也许是少年时代父爱的缺失以及母亲势力的压迫，父亲的性格染着阴沉与自卑的颜色，这种消极或者说悲情使他显得怯懦而终归于妄自菲薄。据奶奶回忆，在爷爷去世之前，因为彼此倔强固执相冲，父亲从不愿喊爷爷父亲，而在爷爷去世之后，父亲在爷爷的墓前哭了三天。我有的时候会想，我的倔脾气应该也是深深烙着家族的印子，太难改变，太后知后觉，悔恨太多太长。</p><p>       母亲的父亲是教师，母亲的母亲是普通的纺织工人。母亲的家庭比父亲的在经济上要富裕一些，但仍是拮据度日的程度，家中最大的收入也一直是外公身为教师的微薄工资在支持。那个年代的幕布下面，教师资源的稀缺将仅有着小学学历的外公拉上小学六年级的讲台。如今，早已退休的我的外公外婆，相依在陈旧的小区中，拒绝着儿子女儿搬到市区公寓的请劝，度着离奇的夕阳时光：两位耄耋老者执迷之事，不是书法，不是看戏，不是广场舞，而是卖菜。在老旧小区一块未被开垦的十平方左右的地上，种满了小区中所有“好事老人”耕耘的蔬菜瓜果。起初是出于自给自足的情趣，后来慢慢衍变成一发不可收拾的瘾。早出晚归，日夜耕作在那方极小的菜地，成熟了便挑到街上售卖，挣极少的钱。儿女的百般劝阻无用，老人家自己却心驰不已。</p><p>       小的时候，每年的寒暑假我都会去外公外婆家住上三五天。冬天吃拥有厨师资格证的外公做的冻五花肉，过年时候挤在小小的客厅里看春晚；夏天和妹妹一起去方塔公园划船，买两块五一根的绿色心情在小区的健身器材旁边吃上半个小时。这些记忆已经很难再调动到现实生活中来了。现在见到外公外婆的契机只剩下了与母亲一同赴的红白宴席，每隔好久的时间见到他们都觉得苍老许多。</p><p>       我鲜少与母亲谈论她的家族之上的长辈的故事，似乎是家族网太过庞大而难免挤出心结，于是恩恩怨怨，喋喋不休。值得庆幸的是，母亲在这样一个大家族下成长起来，却是养着单纯大条的性格，远没有父亲深邃幽暗。母亲和大部分的中国中年女人一样，知足常乐，偶尔追求一下小小的虚荣感，关心生活表面的衣食住行，温柔而体贴。</p><p>我就在这样一个普普通通的家庭环境中成长起来。</p><p>     家族史是断代史，现世族人永远无法追究到族的根扎于哪里。而当我们已然作为一个中国人存在于这套“族”的美丽的情感逻辑中时，家族首先赋予我们的是责任。我们拥有了无数的身份：儿子、女儿、父亲、长辈、晚辈、丈夫……从很小的时候，我们便需要在每一种身份中履行伦理规定的义务。</p><p>     我的父母都不是家中的独子独女，而恰好他们都是各自兄弟姐妹中的老大，更恰好的是，下一辈的我，也是所有兄弟姐妹中的老大。我有两个表妹，一个是舅舅的女儿，小我一岁；一个是姑姑的女儿，小我三岁。从会说话开始，我便担任着一众孩子们中的“头头”，训斥不守规矩把花瓶打碎的顽皮妹妹，“以身作则”地在吃饭前夕将碗筷整齐摆放好。</p><p>     家族赋予的责任势必会酝酿出压力。在小学的教育之前我便在家族中明白：我需要成为一个范式，成为一个榜样。我好像总是在不断向着我的角色期待努力拼搏，而没有停下来问问自己我到底喜欢什么想要什么。稍稍长大一点之后，从一场饭后的闲聊中偶然得知，在母亲生下我之前的三年，我原本还应该有一个哥哥或是姐姐（夭折）。小时候还满口不信地以为是母亲和奶奶玩笑似的的胡诌，但现在重新一起聊回那时，才确信了是真事。于是，一个从来没有在自己闯了祸之后被哥哥姐姐责怪过的我，时常会想象若是这个哥哥或者姐姐在那个时候顺利地出生了，我现在会是怎么样？我的家族会是怎么样的？当然，全部都只是想象罢了。</p><p>       诚然，家族给了我们责任与义务，并树立起一套伦理的规范。但，我们为什么要遵守伦理？我们能不能用桀骜填满生命，自由来自由去？而这，也许正是家“族”的宿命，也是悲哀之处，无奈之处。</p><p>       富人与穷人的家族，会是一个样貌吗？几乎不会。不同的家族骨骼决定着责任的分量。我们会羡慕富人的生活比自己富足丰裕，但在这背后，也许是羡慕富人的生命可以不需要那么厚重，不需要背负太多不容置喙不容背离的责任。富人从家族中得到的更多的是一份底气，并不是仅仅指经济的底气，而是一份选择的自由，一份生命的自主经营权。而大多数的人，唯一的生命归途也许只是改变家族的命运，至少让他们的孩子甚至更远的后代，能够意识到他们的生命无须通过奉献来得到价值，无须被原生家庭系上宿命的死结，无须矮化人生的风景。而事实上，真正能扭转家族命运的人有多少呢？也许我们有时会低估家族对我们生命产生的影响。我们会渴望改变家族命运，却不知家族背后的族的繁冗根系几乎无法被家族中一个个体轻易地拆解击穿。</p><p>       何况，责任之外，联系的展开还使情感横溢在家族的语境中，而当情感占领主场，理性往往一无所能。置身于家族，我们很难用一种漠然与冷血的内心面貌对待家事。直到现在，一岁时候在奶奶怀里摇着睡着的影像还会不时出现在我的回忆里。我还记得童年坐在妈妈的电瓶车后座上唱幼儿园新教的歌，还记得每周向妈妈吐槽今天班级发生的大大小小的事，还记得每个星期一家四口开着电瓶车一起去离家最近的大商场买东西……温暖的回忆太多太多了。“一个有着一个永远不会长大的孩子的家，每天过轻轻松松浅浅淡淡的日光是多么不可求的事啊！”，现在我也会做这种白日梦。</p><p>      除了笼统的温暖的基调，一些深刻的充满矛盾的情感有时却显得悲壮万分，尤其在母亲与孩子的关系中。孩子与母亲是个互生体，孩子的灵魂寄生于母亲的灵魂中，那份血缘承载的联系自然地调动出母性。当我面对我的母亲，我常常觉得愧疚。我根本没有办法补偿她为我付出的一切，而我的母亲却刚好相反。当我痛苦于愧疚，对她来讲，本身便是一种侮辱，至少多少是残酷的，她将其看作对她养育的仇视。这就像个悖论。当我表露出真实的感激越界后的愧怍，母亲将伤心欲绝；而当我佯装理所应当地接受，她也许反而欣慰。她的生命不无苦衷，要求她理解我的苦衷是伤人的。遇到家族中的这些种种矛盾，又回到了那个最初的问题：当我们置身于家庭与血缘的语境之中，我们应当如何生命？</p><p>当我写到、想到这里，我想这样给出我的回答：让生命变得厚重，把生命沉淀在家族与血缘里。我们可以在家族之外桀骜恣肆地追逐理想，但也许不该在家族之内轻浮任行僭越自然。厚重的生命是悲情的，我们也许会发现理想与宿命无法解决的矛盾，但生命本身便需要向悲情追寻意义。在这场美丽的宿命里，愿每个人能勇敢地面对家族带给我们生命的礼物。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;  当我们置身于家庭与血缘的语境之中，我们应当如何生命？&lt;/p&gt;
-&lt;p&gt;       家族首先发轫于联系。在华夏文明的浪漫视野中，生命的诞生与逝去是奇妙而无法捉摸的，且无规律可以追寻的纯自然现象。对于生命的变故，我们滋生出强烈的情感，震撼或者悲恸。这种独特的情感体验使我们敬</summary>
-      
-    
-    
-    
-    <category term="长文" scheme="http://example.com/categories/%E9%95%BF%E6%96%87/"/>
-    
-    
-    <category term="思考" scheme="http://example.com/tags/%E6%80%9D%E8%80%83/"/>
     
   </entry>
   
