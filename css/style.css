@@ -23,7 +23,7 @@ textarea,
   font-family: "source-han-serif-sc", serif, "PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif !important; }
 
 body {
-  background-color: #FFF;
+  background-color: midnightblue;
   color: #444;
   font-family: "source-han-serif-sc", serif, "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -41,7 +41,7 @@ body {
 
 a,
 button.submit {
-  color: #6E7173;
+  color: aliceblue;
   text-decoration: none;
   -webkit-transition: all .1s ease-in;
   -moz-transition: all .1s ease-in;
@@ -74,8 +74,8 @@ div {
       height: 0;
       overflow: hidden; }
     #header .site-name #logo {
-      font: bold 38px/1.12 "source-han-serif-sc", serif, Georgia, Times, sans-serif;
-      color: #555; }
+      font: bold 38px/1.10 "source-han-serif-sc", serif, Georgia, Times, sans-serif;
+      color: white; }
       #header .site-name #logo span, #header .site-name #logo:hover {
         color: #777; }
     #header .site-name .description {
@@ -91,7 +91,7 @@ div {
       display: inline-block;
       padding: 3px 20px 3px;
       line-height: 30px;
-      color: #444;
+      color: white;
       font-size: 13px;
       border: 1px solid transparent; }
       #header #nav-menu a:hover {
@@ -109,10 +109,10 @@ div {
   #sidebar .widget {
     margin-bottom: 30px; }
     #sidebar .widget .widget-title {
-      color: #6E7173;
+      color: white;
       line-height: 2.7;
       margin-top: 0;
-      font-size: 16px;
+      font-size: 14px;
       border-bottom: 1px solid #ddd;
       display: block;
       font-weight: normal; }
@@ -171,15 +171,15 @@ div {
   padding: 25px 0 15px; }
   .post .post-title {
     margin: 0;
-    color: #555;
+    color: aliceblue;
     text-align: left;
     font: bold 25px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif; }
     .post .post-title a {
-      color: #555; }
+      color: black; }
   .post .post-meta {
-    padding: 0;
-    margin: 15px 0 0;
-    color: #6E7173;
+    padding: initial;
+    margin: 3px 0 0;
+    color: white;
     float: left;
     display: inline;
     text-indent: .15em; }
@@ -223,9 +223,9 @@ div {
       color: #444; }
   .post .post-content {
     clear: left;
-    font-size: 15px;
-    line-height: 1.77;
-    color: #444;
+    font-size: 10px;
+    line-height: 0.4;
+    color: white;
     padding-top: 15px;
     text-align: justify;
     text-justify: distribute;
@@ -366,7 +366,7 @@ div {
   padding: .8em 0 3.6em;
   margin-top: 1em;
   line-height: 2.5;
-  color: #6E7173;
+  color: white;
   text-align: center; }
   #footer span {
     font-size: .9em; }
@@ -773,10 +773,10 @@ pre {
 /* read more*/
 .readmore a {
   font-size: 14px;
-  color: #444;
+  color: white;
   margin: -10px 0;
   padding: 5px 10px;
-  border: 1px solid #ddd;
+  border: 1px solid white;
   border-radius: 5px;
   float: right; }
   .readmore a:after {
