@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>平平哀辞</title>
+  
+  <subtitle>蓝色的头颅和蓝色的肉身</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-03-11T02:36:41.982Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Arm</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ideas Mar.11</title>
+    <link href="http://example.com/2022/03/11/Ideas%20Mar.11/"/>
+    <id>http://example.com/2022/03/11/Ideas%20Mar.11/</id>
+    <published>2022-03-11T01:57:28.000Z</published>
+    <updated>2022-03-11T02:36:41.982Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mar-11"><a href="#Mar-11" class="headerlink" title="Mar.11"></a>Mar.11</h1><p>开始用hexo写blog的第一天，打算记录一下我的近期重要事件和计划。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Mar-11&quot;&gt;&lt;a href=&quot;#Mar-11&quot; class=&quot;headerlink&quot; title=&quot;Mar.11&quot;&gt;&lt;/a&gt;Mar.11&lt;/h1&gt;&lt;p&gt;开始用hexo写blog的第一天，打算记录一下我的近期重要事件和计划。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hiiiiii</title>
+    <link href="http://example.com/2022/03/11/hiiiiii/"/>
+    <id>http://example.com/2022/03/11/hiiiiii/</id>
+    <published>2022-03-11T01:57:16.000Z</published>
+    <updated>2022-03-11T01:57:16.922Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+</feed>
